@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+@mixin bp-watch-only {
+  @media (max-width: $bp-watch-max) {
+    @content;
+  }
+}
+
+@mixin bp-tablet-up {
+  @media (min-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin bp-car-up {
+  @media (min-width: $bp-car) {
+    @content;
+  }
+}
+
+@mixin bp-tv-up {
+  @media (min-width: $bp-tv) {
+    @content;
+  }
+}
