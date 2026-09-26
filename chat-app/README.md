@@ -1,5 +1,9 @@
 # ChatApp
 
+> **¿Eres usuario de la app?** Lee el [Manual de usuario](./MANUAL.md).
+>
+> Para usarla con la API de práctica: `npm run api` en una terminal y `npm start` en otra. Usuario de prueba: `ele` / `123456`.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
 
 ## Development server
