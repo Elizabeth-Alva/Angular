@@ -1,1 +1,85 @@
+// Usamos siempre los tokens de _variables.scss (nunca colores sueltos).
 @use 'variables' as *;
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+  background: $color-bg;
+}
+
+.login__card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-6 $space-5;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.login__title {
+  font-size: $font-size-lg;
+  color: $color-primary-dark;
+  margin-bottom: $space-3;
+}
+
+.login__label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  margin-top: $space-2;
+}
+
+.login__input {
+  width: 100%;
+  padding: $space-2 $space-3;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font: inherit;
+  color: $color-text;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: $color-accent;
+  }
+}
+
+.login__error {
+  font-size: $font-size-sm;
+  color: #b3401f; // versión más oscura de $color-accent para buen contraste
+}
+
+.login__remember {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  margin-top: $space-2;
+}
+
+.login__submit {
+  margin-top: $space-4;
+  padding: $space-3;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: $color-text-on-primary;
+  font-weight: 700;
+  transition: background-color $transition-fast;
+
+  &:hover:not(:disabled),
+  &:focus-visible {
+    background: $color-primary-dark;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
