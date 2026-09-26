@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginCredentials, LoginErrors, LoginValidationResult } from '../../../core/models';
+import { AuthService } from '../../../core/services/auth.service';
 import { validateCredentials } from '../../../core/utils/login-validator';
 
 /**
@@ -24,6 +25,7 @@ interface LoginForm {
   styleUrl: './login.scss',
 })
 export class Login {
+  private readonly auth: AuthService = inject(AuthService);
   private readonly router: Router = inject(Router);
 
   /** Errores a mostrar debajo de cada campo. */
@@ -54,6 +56,15 @@ export class Login {
     this.errors.set(result.errors);
     if (!result.valid) return; // si hay errores, no seguimos
 
-    await this.router.navigate(['/bienvenida']);
+    // Comprobamos usuario + hash de la contraseña (Punto 3).
+    this.loading.set(true);
+    const ok: boolean = await this.auth.login(credentials);
+    this.loading.set(false);
+
+    if (ok) {
+      await this.router.navigate(['/bienvenida']);
+    } else {
+      this.errors.set({ general: 'Usuario o contraseña incorrectos' });
+    }
   }
 }
