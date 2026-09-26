@@ -136,3 +136,9 @@
   align-items: center;
   justify-content: center;
 }
+.chat-list__empty {
+  padding: $space-5 $space-4;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}

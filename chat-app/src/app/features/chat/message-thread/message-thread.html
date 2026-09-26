@@ -1,31 +1,17 @@
 <div class="chat__messages">
   <span class="message-date-divider">Hoy</span>
 
-  <div class="bubble-row">
-    <div class="bubble bubble--received">
-      <p class="bubble__text">Hola, ¿cómo va el maquetado del chat?</p>
-      <span class="bubble__meta">12:40</span>
+  @for (msg of messages(); track msg.id) {
+    <!-- [class.x]="condición" agrega la clase x solo si la condición es verdadera -->
+    <div class="bubble-row" [class.bubble-row--sent]="msg.fromMe">
+      <div class="bubble" [class.bubble--sent]="msg.fromMe" [class.bubble--received]="!msg.fromMe">
+        <p class="bubble__text">{{ msg.text }}</p>
+        <span class="bubble__meta">
+          {{ msg.sentAt | date: 'HH:mm' }}
+          @if (msg.fromMe && msg.status === 'read') { ✓✓ }
+          @else if (msg.fromMe) { ✓ }
+        </span>
+      </div>
     </div>
-  </div>
-
-  <div class="bubble-row bubble-row--sent">
-    <div class="bubble bubble--sent">
-      <p class="bubble__text">Va bien, ya tengo el sidebar y las burbujas de mensaje listas</p>
-      <span class="bubble__meta">12:42</span>
-    </div>
-  </div>
-
-  <div class="bubble-row bubble-row--sent">
-    <div class="bubble bubble--sent">
-      <p class="bubble__text">Falta probar reloj, auto y TV</p>
-      <span class="bubble__meta">12:42 ✓✓</span>
-    </div>
-  </div>
-
-  <div class="bubble-row">
-    <div class="bubble bubble--received">
-      <p class="bubble__text">Perfecto, nos vemos mañana entonces 👍</p>
-      <span class="bubble__meta">12:45</span>
-    </div>
-  </div>
+  }
 </div>

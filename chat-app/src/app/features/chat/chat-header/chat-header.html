@@ -5,12 +5,15 @@
     </svg>
   </button>
 
-  <span class="avatar avatar--1">AT<span class="avatar__status" aria-hidden="true"></span></span>
+  <!-- "@if (x; as c)" guarda el valor en la variable c si existe -->
+  @if (chat(); as c) {
+    <app-avatar [initials]="c.initials" [color]="c.avatarColor" [online]="c.online" />
 
-  <div class="chat__header-info">
-    <span class="chat__header-name">Ana Torres</span>
-    <span class="chat__header-subtitle">En línea</span>
-  </div>
+    <div class="chat__header-info">
+      <span class="chat__header-name">{{ c.name }}</span>
+      <span class="chat__header-subtitle">{{ c.online ? 'En línea' : 'Desconectado' }}</span>
+    </div>
+  }
 
   <div class="chat__header-actions">
     <button class="chat__header-action" aria-label="Llamar">

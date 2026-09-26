@@ -1,4 +1,5 @@
-<form class="message-input">
+<!-- preventDefault evita que el navegador recargue la página al enviar el form -->
+<form class="message-input" (submit)="send(); $event.preventDefault()">
   <div class="message-input__actions">
     <button type="button" class="message-input__action" aria-label="Insertar emoji">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -19,6 +20,8 @@
     type="text"
     placeholder="Escribe un mensaje"
     aria-label="Escribe un mensaje"
+    [value]="text()"
+    (input)="onInput($event)"
   />
 
   <button type="submit" class="message-input__send" aria-label="Enviar mensaje">
