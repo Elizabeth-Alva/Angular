@@ -20,6 +20,11 @@ export class ChatHeader {
   private readonly auth: AuthService = inject(AuthService);
   private readonly router: Router = inject(Router);
 
+  /** Botón "Volver" (solo visible en teléfono): regresa a la lista. */
+  protected back(): void {
+    this.chatService.closeChat();
+  }
+
   /** Cierra la sesión (borra cookie y localStorage) y vuelve al login. */
   protected logout(): void {
     this.auth.logout();

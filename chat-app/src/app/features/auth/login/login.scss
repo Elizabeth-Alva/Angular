@@ -83,3 +83,23 @@
     cursor: wait;
   }
 }
+
+// Campo de contraseña con el botón "Ver/Ocultar" adentro.
+.login__password {
+  position: relative;
+
+  .login__input {
+    padding-right: 5rem;
+  }
+}
+
+.login__toggle {
+  position: absolute;
+  top: 50%;
+  right: $space-2;
+  transform: translateY(-50%);
+  padding: $space-1 $space-2;
+  font-size: $font-size-sm;
+  color: $color-primary;
+  border-radius: $radius-sm;
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { ChatService } from '../../../core/services/chat.service';
 import { ChatList } from '../chat-list/chat-list';
 import { ChatHeader } from '../chat-header/chat-header';
 import { MessageThread } from '../message-thread/message-thread';
@@ -7,9 +8,9 @@ import { MessageInput } from '../message-input/message-input';
 /**
  * ChatPage: "la página del chat" (antes se llamaba AppShellComponent).
  *
- * No tiene lógica propia: solo acomoda las 4 piezas del chat
- * (lista, encabezado, mensajes y caja de texto). A esto se le llama
- * un componente "contenedor" o de "layout".
+ * Acomoda las 4 piezas del chat (lista, encabezado, mensajes y caja de texto).
+ * En teléfono funciona como una "pila": se ve la lista O el chat abierto,
+ * nunca los dos a la vez (lo controla la clase `app--chat-open`).
  */
 @Component({
   selector: 'app-chat-page',
@@ -19,4 +20,8 @@ import { MessageInput } from '../message-input/message-input';
   templateUrl: './chat-page.html',
   styleUrl: './chat-page.scss',
 })
-export class ChatPage {}
+export class ChatPage {
+  private readonly chatService: ChatService = inject(ChatService);
+  /** true si hay un chat abierto. */
+  protected readonly hasChat = computed<boolean>(() => this.chatService.selectedChat() !== undefined);
+}

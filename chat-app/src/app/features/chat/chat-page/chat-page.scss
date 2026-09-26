@@ -16,7 +16,29 @@
   min-height: 0;
 }
 
+// Teléfono (pantalla angosta): la lista y el chat se turnan.
+// Sin chat abierto se oculta .chat (y se ve la lista); con chat abierto,
+// la lista se oculta desde chat-list.scss.
+.app:not(.app--chat-open) .chat {
+  display: none;
+}
+
+.chat__empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-5;
+  color: $color-text-muted;
+  background: $color-bg;
+  text-align: center;
+}
+
 @include bp-tablet-up {
+  .app:not(.app--chat-open) .chat {
+    display: flex;
+  }
+
   .app {
     flex-direction: row;
   }

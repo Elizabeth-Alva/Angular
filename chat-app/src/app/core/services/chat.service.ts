@@ -15,8 +15,8 @@ import { MOCK_CHATS, MOCK_MESSAGES } from '../data/mock-chats';
 export class ChatService {
   /** Lista de chats. `signal<Chat[]>` indica que guarda un arreglo de Chat. */
   readonly chats = signal<Chat[]>(MOCK_CHATS);
-  /** Id del chat abierto; `null` significa "ninguno seleccionado". */
-  readonly selectedChatId = signal<number | null>(1);
+  /** Id del chat abierto; `null` significa "ninguno seleccionado" (así empieza). */
+  readonly selectedChatId = signal<number | null>(null);
   /** Todos los mensajes (privado: solo este servicio lo modifica). */
   private readonly messages = signal<Message[]>(MOCK_MESSAGES);
 
@@ -36,6 +36,11 @@ export class ChatService {
   /** Cambia el chat abierto. `: void` indica que la función no devuelve nada. */
   selectChat(id: number): void {
     this.selectedChatId.set(id);
+  }
+
+  /** Cierra el chat abierto (botón "Volver" en teléfono). */
+  closeChat(): void {
+    this.selectedChatId.set(null);
   }
 
   /** Agrega un mensaje mío al chat abierto (ignora textos vacíos). */

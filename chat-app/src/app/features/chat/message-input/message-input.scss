@@ -104,3 +104,7 @@
     display: none;
   }
 }
+.message-input__send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

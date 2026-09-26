@@ -30,6 +30,14 @@ export class Login {
 
   /** Errores a mostrar debajo de cada campo. */
   protected readonly errors = signal<LoginErrors>({});
+  /** true = la contraseña se ve como texto (botón de ojo). */
+  protected readonly showPassword = signal<boolean>(false);
+
+  /** Muestra u oculta la contraseña. */
+  protected togglePassword(): void {
+    this.showPassword.update((v: boolean) => !v);
+  }
+
   /** true mientras se verifica el login (para mostrar "Entrando…"). */
   protected readonly loading = signal<boolean>(false);
 

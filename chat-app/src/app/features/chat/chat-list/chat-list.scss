@@ -6,12 +6,22 @@
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+// En teléfono, cuando hay un chat abierto, la lista se oculta.
+// :host-context(.x) = "si algún elemento padre tiene la clase .x".
+:host-context(.app--chat-open) .sidebar {
   display: none;
 }
 
 @include bp-tablet-up {
-  .sidebar {
+  .sidebar,
+  :host-context(.app--chat-open) .sidebar {
     display: flex;
+    height: auto;
     flex-direction: column;
     width: 320px;
     flex-shrink: 0;

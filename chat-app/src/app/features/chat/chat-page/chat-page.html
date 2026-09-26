@@ -1,9 +1,16 @@
-<div class="app">
+<div class="app" [class.app--chat-open]="hasChat()">
   <app-chat-list></app-chat-list>
 
   <main class="chat">
-    <app-chat-header></app-chat-header>
-    <app-message-thread></app-message-thread>
-    <app-message-input></app-message-input>
+    @if (hasChat()) {
+      <app-chat-header></app-chat-header>
+      <app-message-thread></app-message-thread>
+      <app-message-input></app-message-input>
+    } @else {
+      <!-- Estado vacío: todavía no se eligió ningún chat -->
+      <div class="chat__empty">
+        <p>Selecciona un chat para empezar</p>
+      </div>
+    }
   </main>
 </div>

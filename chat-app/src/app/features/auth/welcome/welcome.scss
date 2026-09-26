@@ -33,3 +33,26 @@
     background: $color-primary-dark;
   }
 }
+
+// Animación suave de entrada (300 ms): aparece y sube un poco.
+.welcome {
+  animation: welcome-in 300ms ease-out both;
+}
+
+@keyframes welcome-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Respetamos a quien desactivó las animaciones en su sistema.
+@media (prefers-reduced-motion: reduce) {
+  .welcome {
+    animation: none;
+  }
+}
