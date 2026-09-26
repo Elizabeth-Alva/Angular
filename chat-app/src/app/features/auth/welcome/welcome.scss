@@ -1,1 +1,35 @@
 @use 'variables' as *;
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-4;
+  text-align: center;
+}
+
+.welcome__title {
+  font-size: $font-size-lg;
+  color: $color-primary-dark;
+}
+
+.welcome__text {
+  color: $color-text-muted;
+}
+
+.welcome__button {
+  margin-top: $space-3;
+  padding: $space-3 $space-5;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: $color-text-on-primary;
+  font-weight: 700;
+
+  &:hover,
+  &:focus-visible {
+    background: $color-primary-dark;
+  }
+}
