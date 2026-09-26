@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppShellComponent } from './app-shell';
+import { ChatPage } from './chat-page';
 
-describe('AppShell', () => {
-  let component: AppShellComponent;
-  let fixture: ComponentFixture<AppShellComponent>;
+describe('ChatPage', () => {
+  let component: ChatPage;
+  let fixture: ComponentFixture<ChatPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppShellComponent],
+      imports: [ChatPage],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppShellComponent);
+    fixture = TestBed.createComponent(ChatPage);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,0 +1,7 @@
+<!-- La clase cambia según el color: avatar--1, avatar--2, ... -->
+<span [class]="'avatar avatar--' + color()">
+  {{ initials() }}
+  @if (online()) {
+    <span class="avatar__status" aria-hidden="true"></span>
+  }
+</span>
