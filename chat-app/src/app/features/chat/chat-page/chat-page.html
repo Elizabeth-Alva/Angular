@@ -1,4 +1,9 @@
-<div class="app" [class.app--chat-open]="hasChat()">
+<!-- Aviso si la API (json-server) está apagada -->
+@if (error(); as msg) {
+  <p class="api-error" role="status">{{ msg }}</p>
+}
+
+<div class="app" [class.app--chat-open]="hasChat()" [attr.aria-busy]="loading()">
   <app-chat-list></app-chat-list>
 
   <main class="chat">

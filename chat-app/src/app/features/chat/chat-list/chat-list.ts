@@ -16,6 +16,8 @@ export class ChatList {
 
   /** Texto que la persona escribe en el buscador. */
   protected readonly search = signal<string>('');
+  /** true mientras llegan los chats de la API. */
+  protected readonly loading = this.chatService.loading;
   /** Id del chat abierto (para pintarlo como "activo"). */
   protected readonly selectedId = this.chatService.selectedChatId;
 

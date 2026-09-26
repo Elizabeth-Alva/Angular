@@ -35,7 +35,7 @@
       </li>
     } @empty {
       <!-- @empty se muestra cuando la lista está vacía -->
-      <li class="chat-list__empty">No se encontraron chats</li>
+      <li class="chat-list__empty">{{ loading() ? 'Cargando chats…' : 'No se encontraron chats' }}</li>
     }
   </ul>
 </aside>

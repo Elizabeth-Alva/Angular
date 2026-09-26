@@ -23,5 +23,14 @@ import { MessageInput } from '../message-input/message-input';
 export class ChatPage {
   private readonly chatService: ChatService = inject(ChatService);
   /** true si hay un chat abierto. */
+  /** Aviso de error de la API (o null). */
+  protected readonly error = this.chatService.error;
+  protected readonly loading = this.chatService.loading;
+
+  constructor() {
+    // Al abrir la página pedimos los chats a la API.
+    this.chatService.loadChats();
+  }
+
   protected readonly hasChat = computed<boolean>(() => this.chatService.selectedChat() !== undefined);
 }

@@ -1,8 +1,24 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.app {
+:host {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+}
+
+.api-error {
+  flex-shrink: 0;
+  padding: $space-2 $space-4;
+  background: $color-accent;
+  color: $color-text-on-primary;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+.app {
+  flex: 1;
+  min-height: 0;
   background: $color-surface;
   display: flex;
   flex-direction: column;

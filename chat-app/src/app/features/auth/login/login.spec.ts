@@ -1,10 +1,12 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { Login } from './login';
 
 describe('Login', () => {
   it('muestra errores si se envía vacío', async () => {
-    TestBed.configureTestingModule({ imports: [Login], providers: [provideRouter([])] });
+    TestBed.configureTestingModule({ imports: [Login], providers: [provideRouter([]), provideHttpClient(), provideHttpClientTesting()] });
     const fixture = TestBed.createComponent(Login);
     await fixture.whenStable();
 
