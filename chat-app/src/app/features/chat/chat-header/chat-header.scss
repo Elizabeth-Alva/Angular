@@ -1,0 +1,91 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: contents;
+}
+
+.chat__header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  border-bottom: 1px solid $color-border;
+  background: $color-surface;
+}
+
+.chat__header-back {
+  display: inline-flex;
+  padding: $space-1;
+
+  @include bp-tablet-up {
+    display: none;
+  }
+}
+
+.chat__header-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__header-name {
+  font-size: $font-size-md;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat__header-subtitle {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.chat__header-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: $space-2;
+}
+
+.chat__header-action {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-full;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary-dark;
+  transition: background-color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    background: $color-bg;
+  }
+}
+
+@include bp-car-up {
+  .chat__header {
+    padding: $space-4 $space-5;
+  }
+
+  .chat__header-action {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@include bp-tv-up {
+  .chat__header-name {
+    font-size: $font-size-lg;
+  }
+}
+
+@include bp-watch-only {
+  .chat__header-subtitle,
+  .chat__header-actions {
+    display: none;
+  }
+}

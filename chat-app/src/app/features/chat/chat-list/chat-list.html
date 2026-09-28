@@ -1,0 +1,41 @@
+<aside class="sidebar">
+  <header class="sidebar__header">
+    <h1 class="sidebar__title">Chats</h1>
+    <input
+      class="sidebar__search"
+      type="search"
+      placeholder="Buscar o empezar un chat nuevo"
+      aria-label="Buscar chats"
+      (input)="onSearch($event)"
+    />
+  </header>
+
+  <ul class="chat-list">
+    <!-- @for repite el <li> una vez por cada chat. "track" ayuda a Angular a no redibujar de más. -->
+    @for (chat of filteredChats(); track chat.id) {
+      <li>
+        <button
+          class="chat-list__item"
+          [class.chat-list__item--active]="chat.id === selectedId()"
+          [attr.aria-current]="chat.id === selectedId()"
+          (click)="select(chat.id)"
+        >
+          <app-avatar [initials]="chat.initials" [color]="chat.avatarColor" [online]="chat.online" />
+          <span class="chat-list__body">
+            <span class="chat-list__row">
+              <span class="chat-list__name">{{ chat.name }}</span>
+              <span class="chat-list__time">{{ chat.lastMessageTime }}</span>
+            </span>
+            <span class="chat-list__preview">{{ chat.lastMessage }}</span>
+          </span>
+          @if (chat.unreadCount > 0) {
+            <span class="chat-list__badge" [attr.aria-label]="chat.unreadCount + ' mensajes sin leer'">{{ chat.unreadCount }}</span>
+          }
+        </button>
+      </li>
+    } @empty {
+      <!-- @empty se muestra cuando la lista está vacía -->
+      <li class="chat-list__empty">{{ loading() ? 'Cargando chats…' : 'No se encontraron chats' }}</li>
+    }
+  </ul>
+</aside>

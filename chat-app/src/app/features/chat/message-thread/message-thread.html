@@ -1,0 +1,17 @@
+<div class="chat__messages" #scroller aria-live="polite">
+  <span class="message-date-divider">Hoy</span>
+
+  @for (msg of messages(); track msg.id) {
+    <!-- [class.x]="condición" agrega la clase x solo si la condición es verdadera -->
+    <div class="bubble-row" [class.bubble-row--sent]="msg.fromMe">
+      <div class="bubble" [class.bubble--sent]="msg.fromMe" [class.bubble--received]="!msg.fromMe">
+        <p class="bubble__text">{{ msg.text }}</p>
+        <span class="bubble__meta">
+          {{ msg.sentAt | date: 'HH:mm' }}
+          @if (msg.fromMe && msg.status === 'read') { ✓✓ }
+          @else if (msg.fromMe) { ✓ }
+        </span>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,66 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.api-error {
+  flex-shrink: 0;
+  padding: $space-2 $space-4;
+  background: $color-accent;
+  color: $color-text-on-primary;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+.app {
+  flex: 1;
+  min-height: 0;
+  background: $color-surface;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+// Teléfono (pantalla angosta): la lista y el chat se turnan.
+// Sin chat abierto se oculta .chat (y se ve la lista); con chat abierto,
+// la lista se oculta desde chat-list.scss.
+.app:not(.app--chat-open) .chat {
+  display: none;
+}
+
+.chat__empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-5;
+  color: $color-text-muted;
+  background: $color-bg;
+  text-align: center;
+}
+
+@include bp-tablet-up {
+  .app:not(.app--chat-open) .chat {
+    display: flex;
+  }
+
+  .app {
+    flex-direction: row;
+  }
+
+  .chat {
+    flex: 1;
+    min-width: 0;
+  }
+}

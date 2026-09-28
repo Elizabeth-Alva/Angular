@@ -1,13 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppShellComponent } from './app-shell/app-shell';
 
+/**
+ * Componente raíz. Ya no pinta el chat directamente: pinta
+ * <router-outlet />, que es el "hueco" donde el router coloca la
+ * pantalla que corresponde a la URL actual (login, bienvenida o chat).
+ */
 @Component({
   selector: 'app-root',
-  imports: [AppShellComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('chat-app');
-}
+export class App {}

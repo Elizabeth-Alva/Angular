@@ -1,0 +1,56 @@
+<main class="login">
+  <!-- [formGroup] conecta el <form> con el FormGroup del .ts; (ngSubmit) llama a submit() -->
+  <form class="login__card" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <h1 class="login__title">Iniciar sesión</h1>
+
+    <label class="login__label" for="username">Usuario</label>
+    <input
+      id="username"
+      class="login__input"
+      formControlName="username"
+      autocomplete="username"
+      autofocus
+      [attr.aria-invalid]="!!errors().username"
+    />
+    @if (errors().username) {
+      <p class="login__error" role="alert">{{ errors().username }}</p>
+    }
+
+    <label class="login__label" for="password">Contraseña</label>
+    <div class="login__password">
+      <!-- El tipo cambia entre "password" (oculta) y "text" (visible) -->
+      <input
+        id="password"
+        class="login__input"
+        [type]="showPassword() ? 'text' : 'password'"
+        formControlName="password"
+        autocomplete="current-password"
+        [attr.aria-invalid]="!!errors().password"
+      />
+      <button
+        class="login__toggle"
+        type="button"
+        (click)="togglePassword()"
+        [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        [attr.aria-pressed]="showPassword()"
+      >
+        {{ showPassword() ? 'Ocultar' : 'Ver' }}
+      </button>
+    </div>
+    @if (errors().password) {
+      <p class="login__error" role="alert">{{ errors().password }}</p>
+    }
+
+    <label class="login__remember">
+      <input type="checkbox" formControlName="rememberMe" /> Mantener sesión iniciada
+    </label>
+
+    @if (errors().general) {
+      <p class="login__error login__error--general" role="alert">{{ errors().general }}</p>
+    }
+
+    <button class="login__submit" type="submit" [disabled]="loading()">
+      {{ loading() ? 'Entrando…' : 'Entrar' }}
+    </button>
+  </form>
+</main>

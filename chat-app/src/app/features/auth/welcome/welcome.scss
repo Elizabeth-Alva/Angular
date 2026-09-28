@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-4;
+  text-align: center;
+}
+
+.welcome__title {
+  font-size: $font-size-lg;
+  color: $color-primary-dark;
+}
+
+.welcome__text {
+  color: $color-text-muted;
+}
+
+.welcome__button {
+  margin-top: $space-3;
+  padding: $space-3 $space-5;
+  border-radius: $radius-sm;
+  background: $color-primary;
+  color: $color-text-on-primary;
+  font-weight: 700;
+
+  &:hover,
+  &:focus-visible {
+    background: $color-primary-dark;
+  }
+}
+
+// Animación suave de entrada (300 ms): aparece y sube un poco.
+.welcome {
+  animation: welcome-in 300ms ease-out both;
+}
+
+@keyframes welcome-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Respetamos a quien desactivó las animaciones en su sistema.
+@media (prefers-reduced-motion: reduce) {
+  .welcome {
+    animation: none;
+  }
+}

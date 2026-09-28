@@ -1,0 +1,7 @@
+<!-- aria-live="polite": los lectores de pantalla anuncian este contenido -->
+<section class="welcome" aria-live="polite">
+  <app-avatar [initials]="user()?.displayName?.charAt(0) ?? '?'" [color]="user()?.avatarColor ?? 1" />
+  <h1 class="welcome__title">¡Hola, {{ user()?.displayName }}!</h1>
+  <p class="welcome__text">Qué bueno verte de nuevo.</p>
+  <button class="welcome__button" type="button" (click)="goToChat()">Ir a mis chats</button>
+</section>

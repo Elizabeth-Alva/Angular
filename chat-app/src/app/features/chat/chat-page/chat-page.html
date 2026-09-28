@@ -1,0 +1,21 @@
+<!-- Aviso si la API (json-server) está apagada -->
+@if (error(); as msg) {
+  <p class="api-error" role="status">{{ msg }}</p>
+}
+
+<div class="app" [class.app--chat-open]="hasChat()" [attr.aria-busy]="loading()">
+  <app-chat-list></app-chat-list>
+
+  <main class="chat">
+    @if (hasChat()) {
+      <app-chat-header></app-chat-header>
+      <app-message-thread></app-message-thread>
+      <app-message-input></app-message-input>
+    } @else {
+      <!-- Estado vacío: todavía no se eligió ningún chat -->
+      <div class="chat__empty">
+        <p>Selecciona un chat para empezar</p>
+      </div>
+    }
+  </main>
+</div>
